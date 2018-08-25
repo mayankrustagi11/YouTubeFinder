@@ -60,6 +60,12 @@ function handleSignoutClick() {
     gapi.auth2.getAuthInstance().signOut();
 }
 
+/* DISPLAY CHANNEL DATA */
+function showChannelData(data) {
+    const channelData = document.getElementById('channel-data');
+    channelData.innerHTML = data;
+}
+
 /* GET CHANNEL DETAILS FROM API */
 function getChannel(channel) {
     gapi.client.youtube.channels.list({
@@ -68,6 +74,21 @@ function getChannel(channel) {
         })
         .then(res => {
             console.log(res);
+            const channel = response.result.items[0];
+            const output = `
+                <ul class="collection">
+                    <li class="collection-item">Title: ${channel.snippet.title}</li>
+                    <li class="collection-item">Id: ${channel.id}</li>
+                    <li class="collection-item">Suscribers: ${channel.statistics.subscriberCount}</li>
+                    <li class="collection-item">View: ${channel.statistics.viewCount}</li>
+                    <li class="collection-item">Videos: ${channel.statistics.videoCount}</li>
+                </ul>
+                <p>${channel.snippet.description}</p>
+                <hr>
+                <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
+            `;
+
+            showChannelData(output);
         })
         .catch(err => alert('No Channel By That Name'));
 }
