@@ -85,9 +85,9 @@ function getChannel(channel) {
             const output = `
                 <ul class="collection">
                     <li class="collection-item">Title: ${channel.snippet.title}</li>
-                    <li class="collection-item">Suscribers: ${channel.statistics.subscriberCount}</li>
-                    <li class="collection-item">View: ${channel.statistics.viewCount}</li>
-                    <li class="collection-item">Videos: ${channel.statistics.videoCount}</li>
+                    <li class="collection-item">Suscribers: ${numberWithCommas(channel.statistics.subscriberCount)}</li>
+                    <li class="collection-item">View: ${numberWithCommas(channel.statistics.viewCount)}</li>
+                    <li class="collection-item">Videos: ${numberWithCommas(channel.statistics.videoCount)}</li>
                     <li class="collection-item">Country: ${channel.snippet.country}</li>
                 </ul>
                 <p>${channel.snippet.description}</p>
@@ -98,4 +98,8 @@ function getChannel(channel) {
             showChannelData(output);
         })
         .catch(err => alert('No Channel By That Name'));
+}
+
+function numberWithCommas(value) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
