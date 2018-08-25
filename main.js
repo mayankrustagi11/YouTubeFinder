@@ -10,8 +10,6 @@ const channelForm = document.getElementById('channel-form');
 const channelInput = document.getElementById('channel-input');
 const videoContainer = document.getElementById('video-container');
 
-const defaultChannel = 'techguyweb';
-
 /* FORM SUBMIT */
 channelForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -48,7 +46,6 @@ function updateSigninStatus(isSignedIn) {
         signoutButton.style.display = 'block';
         content.style.display = 'block';
         videoContainer.style.display = 'block';
-        getChannel(defaultChannel);
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
@@ -90,7 +87,6 @@ function getChannel(channel) {
                     <li class="collection-item">Country: ${channel.snippet.country}</li>
                 </ul>
                 <p>${channel.snippet.description}</p>
-                <hr>
                 <a class="btn black" target="_blank" href="https://youtube.com/${channel.snippet.customUrl}">Visit Channel</a>
             `;
 
