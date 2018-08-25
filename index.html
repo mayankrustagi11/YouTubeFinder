@@ -22,30 +22,34 @@
     <nav class="black">
         <div class="nav-wrapper">
             <div class="container">
-                <a href="#!" class="brand-logo">YouTube Finder</a>
+                <a href="#" class="brand-logo">YouTube Finder</a>
             </div>
         </div>
     </nav>
     <br>
     <section>
         <div class="container">
-            <p>Log In With Google</p>
-            <button class="btn red" id="authorize-button">Log In</button>
-            <button class="btn red" id="signout-button">Log Out</button>
-            <br>
-            <div id="content">
-                <div class="row">
-                    <div class="col l6 m12 s12">
-                        <form id="channel-form">
-                            <div class="input-field">
-                                <input type="text" placeholder="Enter Channel Name" id="channel-input">
-                                <input type="submit" value="Get Channel Data" class="btn black">
+            <div class="row">
+                <div class="col l6 m12 s12">
+                    <p>Log In With Google</p>
+                    <button class="btn red" id="authorize-button">Log In</button>
+                    <button class="btn red" id="signout-button">Log Out</button>
+                    <br>
+                    <div id="content">
+                        <div class="row">
+                            <div class="col l6 m12 s12">
+                                <form id="channel-form">
+                                    <div class="input-field">
+                                        <input type="text" placeholder="Enter Channel Name" id="channel-input">
+                                        <input type="submit" value="Get Channel Data" class="btn black">
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                            <div id="channel-data" class="col l6 m12 s12"></div>
+                        </div>
+                        <div class="row" id="video-container"></div>
                     </div>
-                    <div id="channel-data" class="col l6 m12 s12"></div>
                 </div>
-                <div class="row" id="video-container"></div>
             </div>
         </div>
     </section>
