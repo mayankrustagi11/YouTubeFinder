@@ -19,18 +19,20 @@ function handleClientLoad() {
 
 /* INIT API CLIENT LIBRARY */
 function initClient() {
-    gapi.client.init({
-        discoveryDocs: DISCOVERY_DOCS,
-        clientId: CLIENT_ID,
-        scope: SCOPES
-    }).then(() => {
-        /* LISTEN FOR SIGNIN STATE CHANGES */
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-        /* HANDLE INITIAL SIGN IN STATE */
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        authorizeButton.onclick = handleAuthClick;
-        signoutButton.onclick = handleSignoutClick;
-    });
+    gapi.client
+        .init({
+            discoveryDocs: DISCOVERY_DOCS,
+            clientId: CLIENT_ID,
+            scope: SCOPES
+        })
+        .then(() => {
+            // Listen for sign in state changes
+            gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+            // Handle initial sign in state
+            updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+            authorizeButton.onclick = handleAuthClick;
+            signoutButton.onclick = handleSignoutClick;
+        });
 }
 
 function updateSigninStatus(isSignedIn) {
