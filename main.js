@@ -96,8 +96,41 @@ function getChannel(channel) {
             `;
 
             showChannelData(output);
+
+            const playlistId = channel.contentDetails.relatedPlaylists.uploads;
+            requestVideoPlaylist(playlistId);
         })
         .catch(err => alert('No Channel By That Name'));
+}
+
+function requestVideoPlaylist(playlistId) {
+    const requestOptions = {
+        playlistId: playlistId,
+        part: 'snippet',
+        maxResults: 15
+    }
+
+    const request = gapi.client.youtube.playlistItems.list(requestOptions);
+    request.execute(res => {
+        const playListItems = res.result.items;
+        if (playListItems) {
+            let output = `<h4 class="center">Latest Videos</h4>`;
+
+            /* LOOP THROUGH VIDEOS */
+            playListItems.forEach(item => {
+                const videoId = item.snippet.resourceId.videoId;
+                output += `
+                    <div class="col s3">
+                        <iframe width="100" height="auto" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                `;
+            });
+
+            videoContainer.innerHTML = output;
+        } else {
+            videoContainer.innerHTML = 'No Uploaded Videos';
+        }
+    })
 }
 
 function numberWithCommas(value) {
