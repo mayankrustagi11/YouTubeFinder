@@ -12,6 +12,13 @@ const videoContainer = document.getElementById('video-container');
 
 const defaultChannel = 'techguyweb';
 
+/* FORM SUBMIT */
+channelForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const channel = channelInput.value;
+    getChannel(channel);
+});
+
 /* LOAD AUTH@ LIBRARY */
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
@@ -78,10 +85,11 @@ function getChannel(channel) {
             const output = `
                 <ul class="collection">
                     <li class="collection-item">Title: ${channel.snippet.title}</li>
-                    <li class="collection-item">Id: ${channel.id}</li>
                     <li class="collection-item">Suscribers: ${channel.statistics.subscriberCount}</li>
                     <li class="collection-item">View: ${channel.statistics.viewCount}</li>
                     <li class="collection-item">Videos: ${channel.statistics.videoCount}</li>
+                    <li class="collection-item">Published: ${channel.snippet.publishedAt}</li>
+                    <li class="collection-item">Country: ${channel.snippet.country}</li>
                 </ul>
                 <p>${channel.snippet.description}</p>
                 <hr>
