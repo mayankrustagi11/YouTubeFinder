@@ -88,7 +88,6 @@ function getChannel(channel) {
                     <li class="collection-item">Suscribers: ${channel.statistics.subscriberCount}</li>
                     <li class="collection-item">View: ${channel.statistics.viewCount}</li>
                     <li class="collection-item">Videos: ${channel.statistics.videoCount}</li>
-                    <li class="collection-item">Published: ${channel.snippet.publishedAt}</li>
                     <li class="collection-item">Country: ${channel.snippet.country}</li>
                 </ul>
                 <p>${channel.snippet.description}</p>
