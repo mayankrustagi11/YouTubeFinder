@@ -114,7 +114,7 @@ function requestVideoPlaylist(playlistId) {
     request.execute(res => {
         const playListItems = res.result.items;
         if (playListItems) {
-            let output = `<h4 class="center">Latest Videos</h4>`;
+            let output = `<br><h4 class="center-align">Latest Videos</h4>`;
 
             /* LOOP THROUGH VIDEOS */
             playListItems.forEach(item => {
